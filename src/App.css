@@ -1,5 +1,7 @@
 h1 {
   text-align: center;
+  font-size: 3.5em;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .container {
@@ -8,4 +10,3 @@ h1 {
   justify-content: space-around;
   gap: 5px;
 }
-
