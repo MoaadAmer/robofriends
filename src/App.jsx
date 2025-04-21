@@ -2,6 +2,7 @@ import "./App.css";
 import CardList from "./CardsList.jsx";
 import SearchBox from "./SearchBox.jsx";
 import { Component } from "react";
+import Scroll from "./Scroll";
 
 class App extends Component {
   constructor(props) {
@@ -38,9 +39,9 @@ class App extends Component {
             placeholder="Enter Robot Name"
             onChange={this.onSearchFieldChange}
           />
-          <div className="container">
+          <Scroll>
             <CardList robots={fileredRobots} />
-          </div>
+          </Scroll>
         </>
       );
     }

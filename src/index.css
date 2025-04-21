@@ -1,4 +1,6 @@
 body{
     text-align: center;
-    background: linear-gradient(to left , rgb(73, 73, 190), rgb(34, 227, 173))
+    background: linear-gradient(to left , rgb(73, 73, 190), rgb(34, 227, 173));
+    overflow-y: hidden;
+    
 }
