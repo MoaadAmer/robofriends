@@ -1,34 +1,24 @@
 import "./App.css";
 import CardList from "../components/CardsList.jsx";
 import SearchBox from "../components/SearchBox.jsx";
-import { Component } from "react";
+import { useState,useEffect } from "react";
 import Scroll from "../components/Scroll.jsx";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      robots: [],
-      searchField: "",
-    };
-  }
+export default function App() {
+  const [robots, setRobots] = useState([]);
+  const [searchfield, setSearchfield] = useState("");
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((jsonArray) => this.setState({ robots: jsonArray }));
-  }
+      .then((users) => setRobots(users));
+  },[]);
 
-  onSearchFieldChange = (event) => {
-    this.setState({ searchField: event.target.value });
-  };
+  const fileredRobots = robots.filter((r) => {
+    return r.name.toLowerCase().startsWith(searchfield.toLowerCase());
+  });
 
-  render() {
-    const { robots, searchField } = this.state;
-    const fileredRobots = robots.filter((r) => {
-      return r.name.toLowerCase().startsWith(searchField.toLowerCase());
-    });
-
+  const render = () => {
     if (!robots) {
       return <p>Loading</p>;
     } else {
@@ -37,7 +27,7 @@ class App extends Component {
           <h1>Robofriends</h1>
           <SearchBox
             placeholder="Enter Robot Name"
-            onChange={this.onSearchFieldChange}
+            onChange={(e) => setSearchfield(e.target.value)}
           />
           <Scroll>
             <CardList robots={fileredRobots} />
@@ -45,7 +35,6 @@ class App extends Component {
         </>
       );
     }
-  }
+  };
+  return render();
 }
-
-export default App;
